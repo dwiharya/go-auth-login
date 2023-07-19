@@ -1,0 +1,43 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Home Page</h1>
+    <p>Hello, {{.FirstName}} {{.LastName}}!</p>
+
+    <!-- Form untuk logout -->
+    <form method="post" action="/home">
+        <input type="hidden" name="logout" value="true">
+        <button type="submit">Logout</button>
+    </form>
+
+    <!-- Tambahkan link ke halaman logout untuk konfirmasi logout menggunakan JavaScript (opsional) -->
+    <a href="#" onclick="confirmLogout()">Logout (JavaScript confirmation)</a>
+
+    <!-- Tambahkan JavaScript untuk konfirmasi logout -->
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                // Redirect ke halaman logout jika pengguna setuju untuk logout
+                window.location.href = "/logout";
+            }
+        }
+
+        // Fungsi untuk menampilkan popup
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+
+    <!-- Tampilkan popup jika ada pesan dari backend -->
+    <script>
+        const message = "{{.Message}}";
+        if (message !== "") {
+            showAlert(message);
+        }
+    </script>
+</body>
+</html>
